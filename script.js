@@ -10,7 +10,8 @@ let isResponseGenerating = false;
 
 // API configuration
 const API_KEY = "AIzaSyDlKg4zRw-JpfDdRXZ8PzJ76KA_9JuoQi0";
-const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
+// const API_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${API_KEY}`;
+const APIURL = "http://localhost:5000/chat" ;
 
 // Load theme and chat data from local storage on page load
 const loadDataFromLocalstorage = () => {
@@ -61,32 +62,42 @@ const showTypingEffect = (text, textElement, incomingMessageDiv) => {
 // Fetch response from the API based on user message
 const generateAPIResponse = async (incomingMessageDiv) => {
   const textElement = incomingMessageDiv.querySelector(".text"); // Getting text element
-
+///comet
   try {
     // Send a POST request to the API with the user's message
-    const response = await fetch(API_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: userMessage }],
-          },
-        ],
-      }),
-    });
+    // const response = await fetch(API_URL, {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({
+    //     contents: [
+    //       {
+    //         role: "user",
+    //         parts: [{ text: userMessage }],
+    //       },
+    //     ],
+    //   }),
+    // });
 
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error.message);
+    // const data = await response.json();
+    // if (!response.ok) throw new Error(data.error.message);
 
-    // Get the API response text and remove asterisks from it
-    const apiResponse = data?.candidates[0].content.parts[0].text.replace(
-      /\*\*(.*?)\*\*/g,
-      "$1"
-    );
-    showTypingEffect(apiResponse, textElement, incomingMessageDiv); // Show typing effect
-  } catch (error) {
+    // // Get the API response text and remove asterisks from it
+    // const apiResponse = data?.candidates[0].content.parts[0].text.replace(
+    //   /\*\*(.*?)\*\*/g,
+    //   "$1"
+    // );
+    // showTypingEffect(apiResponse, textElement, incomingMessageDiv); // Show typing effect
+    const response = await fetch(APIURL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: userMessage })
+});
+const data = await response.json();
+const apiResponse = data.reply;
+
+
+  } 
+  catch (error) {
     // Handle error
     isResponseGenerating = false;
     textElement.innerText = error.message;

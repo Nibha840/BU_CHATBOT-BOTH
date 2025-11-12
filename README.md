@@ -1,61 +1,93 @@
-# Gemini Chatbot Frontend Development
+Bennett University Chatbot (BU-Chatbot)
 
-<a href="https://swapan-code.github.io/Gemini-Chatbot-Frontend-Project/" target="_blank">Live Link</a>
-<br>
-<br>
-Screenshots:
-![image](https://github.com/user-attachments/assets/1717a9bf-1e8e-4e7a-9c49-5a716bcc4824)
-<br>
-<br>
-![image](https://github.com/user-attachments/assets/6d3e3ec8-38da-45e2-b1fc-ecfd24873467)
-<br>
-<br>
-![image](https://github.com/user-attachments/assets/d6ae1bf2-d13b-4e7c-87c7-507f841293aa)
-<br>
-<br>
+This project features an AI-powered conversational chatbot specifically designed to answer Frequently Asked Questions (FAQs) about Bennett University (Greater Noida, India). It leverages a custom machine learning model to provide instant and accurate information across various topics, including admissions, courses, fees, placements, and campus life.
 
-Welcome to the **Gemini Chatbot** project! This project showcases the development of a responsive and interactive chatbot interface using **HTML**, **CSS**, and **JavaScript**. The chatbot leverages the Google Gemini API to provide dynamic responses based on user input, offering an engaging user experience.
 
-## Features
 
-- **Responsive Design**: The UI is fully responsive, ensuring optimal performance on both desktop and mobile devices.
-- **Dynamic API Integration**: Integrated with the Google Gemini API to generate real-time responses based on user queries.
-- **Theme Toggle**: Users can switch between light and dark modes, with preferences stored in local storage.
-- **Local Storage**: Chat history and user settings are preserved across sessions, providing a consistent and personalized experience.
-- **User-Friendly Interface**: Includes pre-configured suggestions to help users quickly explore the chatbot’s capabilities.
+Key Features-------------
+University-Specific Knowledge: Answers cover essential areas of the university:
 
-## Project Structure
+Admissions Process & Deadlines
 
-- `index.html`: The main HTML file that structures the chatbot interface.
-- `styles.css`: Contains all the CSS styles for layout, theme, and responsiveness.
-- `script.js`: JavaScript file responsible for handling user interactions, API requests, theme toggling, and local storage management.
+B.Tech, Management (MBA/BBA), and Law Programs
 
-## Installation
+Fee Structure & Scholarship Details
 
-To get a local copy up and running, follow these simple steps:
+Placement Statistics & Top Recruiters
 
-1. **Clone the repository**:
-    ```bash
-    git clone https://github.com/Swapan-code/Gemini-Chatbot-Frontend-Project.git
-    ```
-   
-2. **Open the project directory**:
-    ```bash
-    cd Gemini-Chatbot-Frontend-Project
-    ```
+Hostel Facilities & Student Life
 
-3. **Run the project**:
-   Simply open `index.html` in your browser to see the chatbot in action.
+Intuitive Web Interface: A modern, responsive chat UI (index.html, styles.css) featuring a dark/light mode toggle and pre-defined suggestion prompts.
 
-## Usage
+Custom Deep Learning Model: Uses a two-layer fully connected Neural Network (FCNN) built with PyTorch for Natural Language Understanding (NLU).
 
-- Type a prompt in the input box and hit the send button to interact with the chatbot.
-- Use the theme toggle button to switch between light and dark modes.
-- Chat history will be automatically saved and loaded on subsequent visits.
+Data Augmentation: Implements Synonym Replacement using nltk.corpus.wordnet to create a more robust and diverse training dataset.
 
-## API Configuration
+Scalable Backend: Deployed via a Flask REST API (app.py) to efficiently handle chat requests from the frontend.
 
-This project uses the Google Gemini API. To use your own API key, replace the existing API key in `script.js`:
+⚙️ Technology Stack
 
-```javascript
-const API_KEY = "YOUR_API_KEY_HERE"; 
+Category,Technology,Purpose
+Backend,"Python, Flask",Serving the chatbot model and handling API requests.
+Model,"PyTorch, NumPy","Building, training, and running the Neural Network model."
+NLP,"NLTK (WordNet, Lemmatization)","Tokenization, text preprocessing, and data augmentation."
+Frontend,"HTML5, CSS3, JavaScript",User interface and handling client-side interactions.
+
+
+Model Architecture (FCNN)
+The core of the chatbot is a Feedforward Neural Network implemented in PyTorch, defined in bu_chatbot.py.
+
+Input Layer: Size equals the number of unique lemmatized words (Bag-of-Words vector).
+
+Hidden Layers: Two hidden layers (size 8 each) with ReLU activation.
+
+Output Layer: Size equals the number of intent tags (classes).
+
+Activation: Softmax is used on the output layer for probability distribution.
+
+Loss Function: nn.BCELoss()
+
+Optimizer: optim.Adam()
+
+
+
+🚀 Setup and Installation
+Follow these steps to set up and run the project locally.
+
+1. Clone the repository
+Bash
+
+git clone <YOUR_REPO_URL>
+cd Gemini-Chatbot-Frontend-Project
+
+2. Create and Activate a Virtual Environment
+It is highly recommended to use a virtual environment:
+
+
+python -m venv .venv
+
+# Linux/macOS
+source .venv/bin/activate
+
+# Windows PowerShell
+.\.venv\Scripts\Activate.ps1
+3. Install Required Packages
+The backend requires the dependencies listed in your requirements.txt (Flask, torch, nltk, numpy, scikit-learn).
+
+Bash
+
+pip install -r requirements.txt
+4. Ensure Model File is Present
+The trained model weights, model.pth, must be present in the project's root directory. (Note: This file is intentionally ignored by Git to manage repository size.)
+
+5. Run the Flask Backend
+Start the API server by running the Flask application file:
+
+Bash
+
+# Ensure the virtual environment is active
+python app.py
+The server will run at http://127.0.0.1:5000 (or http://localhost:5000).
+
+6. Open the Frontend
+Open the index.html file in your web browser (double-click it). The JavaScript (script.js) is configured to send chat messages to the Flask endpoint at http://127.0.0.1:5000/chat.

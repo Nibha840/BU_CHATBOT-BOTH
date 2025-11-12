@@ -1,0 +1,23 @@
+# Virtual environments
+.venv/
+
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env.bak/
+
+# Environment / secrets
+.env
+
+# Model weights and large artifacts
+model.pth
+*.pth
+
+# Editor/IDE folders
+.vscode/
+.idea/
+.DS_Store
