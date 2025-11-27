@@ -1,0 +1,15 @@
+🤖 Bennett University AI Chatbot
+
+An intelligent conversational chatbot built with PyTorch and Flask that provides instant answers about Bennett University - from admissions and courses to placements and campus life.
+
+✨ Features:
+• Custom neural network model for natural language understanding
+• Modern web interface with dark/light mode
+• RESTful Flask API backend
+• Real-time chat responses
+• Handles admissions, courses, fees, placements, and more
+
+🛠️ Tech Stack: Python | PyTorch | Flask | NLTK | HTML/CSS/JavaScript
+
+Perfect for prospective students looking to get quick answers about Bennett University!
+

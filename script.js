@@ -88,14 +88,20 @@ const generateAPIResponse = async (incomingMessageDiv) => {
     // );
     // showTypingEffect(apiResponse, textElement, incomingMessageDiv); // Show typing effect
     const response = await fetch(APIURL, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message: userMessage })
-});
-const data = await response.json();
-const apiResponse = data.reply;
-
-
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ message: userMessage })
+    });
+    
+    if (!response.ok) {
+      throw new Error(`Server responded with status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    const apiResponse = data.reply;
+    
+    // Show typing effect with the API response
+    showTypingEffect(apiResponse, textElement, incomingMessageDiv);
   } 
   catch (error) {
     // Handle error
@@ -110,7 +116,7 @@ const apiResponse = data.reply;
 // Show a loading animation while waiting for the API response
 const showLoadingAnimation = () => {
   const html = `<div class="message-content">
-                  <img class="avatar" src="images/gemini.svg" alt="Gemini avatar">
+                  <img class="avatar" src="images/logo.svg" alt="Bennett University logo" onerror="this.src='images/gemini.svg'; this.alt='Bennett University'">
                   <p class="text"></p>
                   <div class="loading-indicator">
                     <div class="loading-bar"></div>
