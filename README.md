@@ -71,6 +71,7 @@ source .venv/bin/activate
 
 # Windows PowerShell
 .\.venv\Scripts\Activate.ps1
+.\venv_fresh\Scripts\Activate.ps1 
 3. Install Required Packages
 The backend requires the dependencies listed in your requirements.txt (Flask, torch, nltk, numpy, scikit-learn).
 
@@ -91,3 +92,8 @@ The server will run at http://127.0.0.1:5000 (or http://localhost:5000).
 
 6. Open the Frontend
 Open the index.html file in your web browser (double-click it). The JavaScript (script.js) is configured to send chat messages to the Flask endpoint at http://127.0.0.1:5000/chat.
+
+
+.\venv_fresh
+\Scripts\Activate.ps1 
+python app.py
